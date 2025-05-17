@@ -1,42 +1,36 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Index({ musicPlaying, onPlayMusic }) {
   const [confettiElems, setConfettiElems] = useState([]);
   const [heartElems, setHeartElems] = useState([]);
-  const audioRef = useRef(null);
   const [volume, setVolume] = useState(1);
 
   useEffect(() => {
-    const confettis = [];
-    for (let i = 0; i < 70; i++) {
-      confettis.push({
-        id: i,
-        left: Math.random() * 100 + "vw",
-        top: Math.random() * -150 + "px", // thoda upar se start
-        duration: Math.random() * 3 + 2 + "s",
-        bgColor: ["#f43f5e", "#facc15", "#10b981", "#3b82f6"][
-          Math.floor(Math.random() * 4)
-        ],
-      });
-    }
+    const confettis = Array.from({ length: 70 }, (_, i) => ({
+      id: i,
+      left: Math.random() * 100 + "vw",
+      top: Math.random() * -150 + "px",
+      duration: Math.random() * 3 + 2 + "s",
+      bgColor: ["#f43f5e", "#facc15", "#10b981", "#3b82f6"][
+        Math.floor(Math.random() * 4)
+      ],
+    }));
     setConfettiElems(confettis);
 
-    const hearts = [];
-    for (let i = 0; i < 30; i++) {
-      hearts.push({
-        id: i,
-        left: Math.random() * 100 + "vw",
-        top: Math.random() * -150 + "px",
-        duration: Math.random() * 4 + 2 + "s",
-      });
-    }
+    const hearts = Array.from({ length: 30 }, (_, i) => ({
+      id: i,
+      left: Math.random() * 100 + "vw",
+      top: Math.random() * -150 + "px",
+      duration: Math.random() * 4 + 2 + "s",
+    }));
     setHeartElems(hearts);
   }, []);
 
   useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.volume = volume;
+    const audio = document.getElementById("bgMusic");
+    if (audio) {
+      audio.volume = volume;
     }
   }, [volume]);
 
@@ -135,7 +129,6 @@ export default function Index({ musicPlaying, onPlayMusic }) {
           }
         }
 
-        /* Volume slider container fixed top right */
         .volume-control {
           position: fixed;
           top: 20px;
@@ -175,18 +168,6 @@ export default function Index({ musicPlaying, onPlayMusic }) {
           transition: background-color 0.2s ease;
         }
         .volume-slider::-webkit-slider-thumb:hover {
-          background: #a78bfa;
-        }
-        .volume-slider::-moz-range-thumb {
-          width: 20px;
-          height: 20px;
-          background: #8b5cf6;
-          cursor: pointer;
-          border-radius: 50%;
-          border: 2px solid #be185d;
-          transition: background-color 0.2s ease;
-        }
-        .volume-slider::-moz-range-thumb:hover {
           background: #a78bfa;
         }
         .volume-label {
@@ -232,8 +213,6 @@ export default function Index({ musicPlaying, onPlayMusic }) {
         }
       `}</style>
 
-      <audio ref={audioRef} id="bgMusic" loop src="/music/music1.mp3" />
-
       <div className="card">
         <h1>Happy Birthday, Betal! 👻🎉🎂</h1>
         <Link to="/memories">
@@ -242,9 +221,18 @@ export default function Index({ musicPlaying, onPlayMusic }) {
         <button
           className="play-btn"
           onClick={() => {
-            if (audioRef.current) {
-              audioRef.current.play();
-              onPlayMusic();
+            const audio = document.getElementById("bgMusic");
+            if (audio && !musicPlaying) {
+              audio.currentTime = 0;
+              audio.volume = volume;
+              audio.play()
+                .then(() => {
+                  onPlayMusic(); // Update App-level state
+                })
+                .catch((e) => {
+                  console.error("Audio play failed:", e);
+                  alert("Please allow audio playback or try clicking again.");
+                });
             }
           }}
           disabled={musicPlaying}
@@ -253,7 +241,6 @@ export default function Index({ musicPlaying, onPlayMusic }) {
         </button>
       </div>
 
-      {/* Fullscreen fixed container for confetti and hearts */}
       <div
         style={{
           position: "fixed",
@@ -288,7 +275,6 @@ export default function Index({ musicPlaying, onPlayMusic }) {
         ))}
       </div>
 
-      {/* Volume control */}
       {musicPlaying && (
         <div className="volume-control" title="Volume Control">
           <div className="volume-label">🔊</div>

@@ -1,9 +1,9 @@
-import React, { useState, useRef } from "react";
-import { HashRouter as Router, Routes, Route } from "react-router-dom"; // ✅ Changed here
+import React, { useRef, useState } from "react";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Memories from "./pages/Memories";
 import Cake from "./pages/Cake";
-import Gift from "./pages/gift";
+import Gift from "./pages/Gift";
 
 export default function App() {
   const [musicPlaying, setMusicPlaying] = useState(false);
@@ -11,11 +11,8 @@ export default function App() {
 
   const handlePlayMusic = () => {
     if (audioRef.current) {
-      audioRef.current
-        .play()
-        .then(() => {
-          setMusicPlaying(true);
-        })
+      audioRef.current.play()
+        .then(() => setMusicPlaying(true))
         .catch((e) => {
           console.log("Error playing audio:", e);
         });
@@ -23,11 +20,13 @@ export default function App() {
   };
 
   return (
-    <Router> {/* ✅ Changed here */}
-        <audio ref={audioRef} id="bgMusic" loop>
-          <source src="/music/music2.mp3" type="audio/mp3" />
-          Your browser does not support the audio element.
-        </audio>
+    <Router>
+      {/* ✅ Audio tag rendered only ONCE */}
+      <audio ref={audioRef} id="bgMusic" loop preload="auto">
+        <source src="music/music1.mp3" type="audio/mp3" />
+
+        Your browser does not support the audio element.
+      </audio>
 
       <Routes>
         <Route

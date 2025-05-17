@@ -177,10 +177,11 @@ Not just today, but the whole year should be like this — because you deserve n
       ) : (
         <>
           <img
-            src="/images/final_photo.png"
-            alt="Birthday"
-            className="revealed-photo"
-          />
+  src={`${import.meta.env.BASE_URL}images/final_photo.png`}
+  alt="Birthday"
+  className="revealed-photo"
+/>
+
           <div className="typewriter-text">{typedText}</div>
         </>
       )}
