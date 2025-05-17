@@ -101,12 +101,9 @@ Have an amazing day, Kiran 👻 `;
       }
     }, 300);
 
-    
     return () => clearInterval(interval);
   }, []);
 
-  
-  
   return (
     <>
       <style>{`
@@ -422,14 +419,13 @@ Have an amazing day, Kiran 👻 `;
             <div className="frosting"></div>
 
             <div className="cake">
-  {[...Array(5)].map((_, i) => (
-    <div
-      key={i}
-      className={`slice ${i >= slicesLeft ? "slice-hide" : ""}`}
-    ></div>
-  ))}
-</div>
-
+              {[...Array(5)].map((_, i) => (
+                <div
+                  key={i}
+                  className={`slice ${i >= slicesLeft ? "slice-hide" : ""}`}
+                ></div>
+              ))}
+            </div>
 
             <div className="table"></div>
 
@@ -438,7 +434,10 @@ Have an amazing day, Kiran 👻 `;
         )}
 
         {envelopeVisible && (
-          <div className="envelope-wrapper" onClick={() => setEnvelopeFlipped(true)}>
+          <div
+            className="envelope-wrapper"
+            onClick={() => setEnvelopeFlipped(true)}
+          >
             <div className={`envelope ${envelopeFlipped ? "flipped" : ""}`}>
               <div className="envelope-inner">
                 <div className="envelope-back">
@@ -449,13 +448,19 @@ Have an amazing day, Kiran 👻 `;
                 </div>
               </div>
             </div>
-            {!envelopeFlipped && <div className="envelope-text">Tap to open</div>}
+            {!envelopeFlipped && (
+              <div className="envelope-text">Tap to open</div>
+            )}
           </div>
         )}
-          <div className="nav-buttons">
-        <button onClick={() => history.back()} className="nav-btn">🔙 Previse</button>
-        <button onClick={() => navigate('/gift')} className="nav-btn">Suprise 🤪</button>
-      </div>
+        <div className="nav-buttons">
+          <button onClick={() => history.back()} className="nav-btn">
+            🔙 Previse
+          </button>
+          <button onClick={() => navigate("/gift")} className="nav-btn">
+            Suprise 🤪
+          </button>
+        </div>
         {paperVisible && (
           <div className="paper" aria-live="polite">
             {typedText}

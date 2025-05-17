@@ -1,27 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const messages = [
   " ✨ Cutest moment, frozen in time with love!.\n\n(Drama Queen 👑)",
   " 📸 This moment is pure gold and always close to my heart. \n\n (Cutest Camera Girl💕)",
   " 😊 That smile still lights up everything around (Earrings 🫠)",
-  " 🌟 A memory to cherish forever, just like you! (Saree 😍😍)"
+  " 🌟 A memory to cherish forever, just like you! (Saree 😍😍)",
 ];
 
 const photos = [
-  { src: 'images/img1.jpg', alt: 'Memory 1' },
-  { src: 'images/img2.jpg', alt: 'Memory 2' },
-  { src: 'images/img3.jpg', alt: 'Memory 3' },
-  { src: 'images/img4.jpg', alt: 'Memory 4' },
+  { src: "images/img1.jpg", alt: "Memory 1" },
+  { src: "images/img2.jpg", alt: "Memory 2" },
+  { src: "images/img3.jpg", alt: "Memory 3" },
+  { src: "images/img4.jpg", alt: "Memory 4" },
 ];
 
 function typeWriter(text, setText) {
   let i = 0;
-  setText('');
+  setText("");
   function type() {
     if (i < text.length) {
-      setText(prev => prev + text.charAt(i));
+      setText((prev) => prev + text.charAt(i));
       i++;
       setTimeout(type, 50);
     }
@@ -30,27 +29,27 @@ function typeWriter(text, setText) {
 }
 
 const Memories = () => {
-   const navigate = useNavigate();
+  const navigate = useNavigate();
   const [highlightIndex, setHighlightIndex] = useState(null);
-  const [typedMessage, setTypedMessage] = useState('');
+  const [typedMessage, setTypedMessage] = useState("");
 
   // Falling hearts and sparkles effect
   useEffect(() => {
     const interval = setInterval(() => {
-      const fallContainer = document.getElementById('fall-container');
+      const fallContainer = document.getElementById("fall-container");
       if (!fallContainer) return;
       for (let i = 0; i < 3; i++) {
-        const fall = document.createElement('div');
-        fall.className = 'fall-item';
+        const fall = document.createElement("div");
+        fall.className = "fall-item";
         if (Math.random() > 0.5) {
-          fall.textContent = '❤️';
-          fall.style.fontSize = '22px';
+          fall.textContent = "❤️";
+          fall.style.fontSize = "22px";
         } else {
-          fall.textContent = '✨';
-          fall.style.fontSize = '20px';
+          fall.textContent = "✨";
+          fall.style.fontSize = "20px";
         }
-        fall.style.left = Math.random() * 100 + 'vw';
-        fall.style.animationDuration = (4 + Math.random() * 3) + 's';
+        fall.style.left = Math.random() * 100 + "vw";
+        fall.style.animationDuration = 4 + Math.random() * 3 + "s";
         fallContainer.appendChild(fall);
 
         setTimeout(() => {
@@ -225,17 +224,24 @@ const Memories = () => {
       <div id="fall-container"></div>
 
       <h1>Lovely Photo Of You</h1>
-      <p>“I’m just thinking 🤔 these cute photos need to be kept safe, otherwise, just like your smile, I’ll have to secretly keep admiring them!” 🌸💖</p>
+      <p>
+        “I’m just thinking 🤔 these cute photos need to be kept safe, otherwise,
+        just like your smile, I’ll have to secretly keep admiring them!” 🌸💖
+      </p>
 
       <div className="center-button">
-  <button className="btn-slide" onClick={showRandomPhoto}>🎲 Random Photo Picker</button>
-</div>
+        <button className="btn-slide" onClick={showRandomPhoto}>
+          🎲 Random Photo Picker
+        </button>
+      </div>
 
       <div className="photos">
         {photos.map((photo, i) => (
           <div
             key={i}
-            className={`photo-box ${highlightIndex !== null && i !== highlightIndex ? 'blurred' : ''}`}
+            className={`photo-box ${
+              highlightIndex !== null && i !== highlightIndex ? "blurred" : ""
+            }`}
             onClick={() => {
               setHighlightIndex(i);
               typeWriter(messages[i], setTypedMessage);
@@ -249,16 +255,23 @@ const Memories = () => {
       {highlightIndex !== null && (
         <div className="highlighted-section">
           <div className="highlighted-photo">
-            <img src={photos[highlightIndex].src} alt={photos[highlightIndex].alt} />
+            <img
+              src={photos[highlightIndex].src}
+              alt={photos[highlightIndex].alt}
+            />
           </div>
           <div className="message-card">{typedMessage}</div>
         </div>
       )}
 
       <div className="nav-buttons">
-  <button className="nav-btn" onClick={() => navigate(-1)}>🔙 Previous</button>
-  <button className="nav-btn" onClick={() => navigate('/cake')}>Next 🔜</button>
-</div>
+        <button className="nav-btn" onClick={() => navigate(-1)}>
+          🔙 Previous
+        </button>
+        <button className="nav-btn" onClick={() => navigate("/cake")}>
+          Next 🔜
+        </button>
+      </div>
     </>
   );
 };

@@ -13,9 +13,11 @@ export default function Index({ musicPlaying, onPlayMusic }) {
       confettis.push({
         id: i,
         left: Math.random() * 100 + "vw",
-        top: Math.random() * -150 + "px",  // thoda upar se start
-        duration: (Math.random() * 3 + 2) + "s",
-        bgColor: ['#f43f5e', '#facc15', '#10b981', '#3b82f6'][Math.floor(Math.random() * 4)]
+        top: Math.random() * -150 + "px", // thoda upar se start
+        duration: Math.random() * 3 + 2 + "s",
+        bgColor: ["#f43f5e", "#facc15", "#10b981", "#3b82f6"][
+          Math.floor(Math.random() * 4)
+        ],
       });
     }
     setConfettiElems(confettis);
@@ -26,7 +28,7 @@ export default function Index({ musicPlaying, onPlayMusic }) {
         id: i,
         left: Math.random() * 100 + "vw",
         top: Math.random() * -150 + "px",
-        duration: (Math.random() * 4 + 2) + "s"
+        duration: Math.random() * 4 + 2 + "s",
       });
     }
     setHeartElems(hearts);
@@ -230,12 +232,7 @@ export default function Index({ musicPlaying, onPlayMusic }) {
         }
       `}</style>
 
-      <audio
-        ref={audioRef}
-        id="bgMusic"
-        loop
-        src="/music/music1.mp3"
-      />
+      <audio ref={audioRef} id="bgMusic" loop src="/music/music1.mp3" />
 
       <div className="card">
         <h1>Happy Birthday, Betal! 👻🎉🎂</h1>
@@ -257,7 +254,7 @@ export default function Index({ musicPlaying, onPlayMusic }) {
       </div>
 
       {/* Fullscreen fixed container for confetti and hearts */}
-      <div 
+      <div
         style={{
           position: "fixed",
           top: 0,
@@ -273,7 +270,12 @@ export default function Index({ musicPlaying, onPlayMusic }) {
           <div
             key={"confetti-" + id}
             className="confetti"
-            style={{ left, top, animationDuration: duration, backgroundColor: bgColor }}
+            style={{
+              left,
+              top,
+              animationDuration: duration,
+              backgroundColor: bgColor,
+            }}
           />
         ))}
 
