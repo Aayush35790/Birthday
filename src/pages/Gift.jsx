@@ -177,7 +177,7 @@ Not just today, but the whole year should be like this — because you deserve n
       ) : (
         <>
           <img
-            src="/images/final photo.png"
+            src="/images/final_photo.png"
             alt="Birthday"
             className="revealed-photo"
           />
