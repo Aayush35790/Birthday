@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom"; // ✅ Changed here
 import Index from "./pages/Index";
 import Memories from "./pages/Memories";
 import Cake from "./pages/Cake";
@@ -23,11 +23,11 @@ export default function App() {
   };
 
   return (
-    <BrowserRouter>
-      <audio ref={audioRef} id="bgMusic" loop>
-        <source src="/music/music1.mp3" type="audio/mp3" />
-        Your browser does not support the audio element.
-      </audio>
+    <Router> {/* ✅ Changed here */}
+        <audio ref={audioRef} id="bgMusic" loop>
+          <source src="/music/music2.mp3" type="audio/mp3" />
+          Your browser does not support the audio element.
+        </audio>
 
       <Routes>
         <Route
@@ -37,9 +37,9 @@ export default function App() {
           }
         />
         <Route path="/memories" element={<Memories />} />
-        <Route path="/cake" element={<Cake />} /> {/* Added Cake route */}
+        <Route path="/cake" element={<Cake />} />
         <Route path="/gift" element={<Gift />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
