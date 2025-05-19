@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 const messages = [
-  " ✨ Cutest moment, frozen in time with love!.\n\n(Drama Queen 👑)",
-  " 📸  The peace of the temple, the fun of a bike ride, and the colors of Holi – all together, this day became the ultimate adventure. (Holi time💕)",
-  " 😊 That smile still lights up everything around (Earrings 🫠)",
-  " 😉 The night out was also fun, but your talks on the tea date outweighed everything. (Chai date 😁😁)",
-    " 🌟 A memory to cherish forever, just like you! (Saree 😍😍)",
-  " 🤗 Drops of rain, the breeze of a bike ride, the taste of kachori, and then a photo with your smile.(Photo Time 😝)",
-
+  " ✨ Cutest moment, frozen in time with love.\n(Drama Queen 👑)",
+  " 📸  The peace of the temple, the fun of a bike ride, and the colors of Holi - all together, this day became the ultimate adventure.\n(Holi time💕)",
+  " 😊 That smile still lights up everything around.\n(Earrings 🫠)",
+  " 😉 The night out was also fun, but your talks on the tea date outweighed everything.\n(Chai date 😁😁)",
+  " 🌟 A memory to cherish forever, just like you.\n(Saree 😍😍)",
+  " 🤗 Drops of rain, the breeze of a bike ride, the taste of kachori, and then a photo with your smile.\n(Photo Time 😝)",
 ];
 
 const photos = [
@@ -20,14 +19,21 @@ const photos = [
   { src: "images/photo3.jpg", alt: "Memory 6" },
 ];
 
-function typeWriter(text, setText) {
+// Updated typeWriter function with timeout cancellation
+function typeWriter(text, setText, typingRef) {
   let i = 0;
   setText("");
+
+  // Clear any existing timeout to prevent overlapping typing
+  if (typingRef.current) {
+    clearTimeout(typingRef.current);
+  }
+
   function type() {
     if (i < text.length) {
       setText((prev) => prev + text.charAt(i));
       i++;
-      setTimeout(type, 50);
+      typingRef.current = setTimeout(type, 50);
     }
   }
   type();
@@ -37,6 +43,7 @@ const Memories = () => {
   const navigate = useNavigate();
   const [highlightIndex, setHighlightIndex] = useState(null);
   const [typedMessage, setTypedMessage] = useState("");
+  const typingRef = useRef(null); // Use ref to store typing timeout
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -64,10 +71,11 @@ const Memories = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const showRandomPhoto = () => {
-    const randomIndex = Math.floor(Math.random() * photos.length);
-    setHighlightIndex(randomIndex);
-    typeWriter(messages[randomIndex], setTypedMessage);
+  const showNextPhoto = () => {
+    const nextIndex =
+      highlightIndex === null ? 0 : (highlightIndex + 1) % photos.length;
+    setHighlightIndex(nextIndex);
+    typeWriter(messages[nextIndex], setTypedMessage, typingRef);
   };
 
   return (
@@ -236,8 +244,9 @@ const Memories = () => {
       </p>
 
       <div className="center-button">
-        <button className="btn-slide" onClick={showRandomPhoto}>
-           Click on this and see 😲
+        <button className="btn-slide" onClick={showNextPhoto}>
+          Click on this and see 😲 
+          Click again for the next photo
         </button>
       </div>
 
@@ -250,7 +259,7 @@ const Memories = () => {
             }`}
             onClick={() => {
               setHighlightIndex(i);
-              typeWriter(messages[i], setTypedMessage);
+              typeWriter(messages[i], setTypedMessage, typingRef);
             }}
           >
             <img src={photo.src} alt={photo.alt} />
