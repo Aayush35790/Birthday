@@ -225,9 +225,7 @@ Please change the parent <Route path="${Y}"> to <Route path="${Y==="/"?"*":`${Y}
         }
       `}),B.jsxs("div",{className:"card",children:[B.jsx("h1",{children:"Happy Birthday, Betal! 👻🎉🎂"}),B.jsx(jf,{to:"/memories",children:B.jsx("button",{className:"btn",children:"Let's Go! ✨"})}),B.jsx("button",{className:"play-btn",onClick:()=>{const p=document.getElementById("bgMusic");p&&!c&&(p.currentTime=0,p.volume=T,p.play().then(()=>{o()}).catch(d=>{console.error("Audio play failed:",d),alert("Please allow audio playback or try clicking again.")}))},disabled:c,children:c?"🎵 Music Playing...":"🎵 Play Music"})]}),B.jsxs("div",{style:{position:"fixed",top:0,left:0,width:"100vw",height:"100vh",pointerEvents:"none",zIndex:1,overflow:"visible"},children:[s.map(({id:p,left:d,top:R,duration:U,bgColor:C})=>B.jsx("div",{className:"confetti",style:{left:d,top:R,animationDuration:U,backgroundColor:C}},"confetti-"+p)),h.map(({id:p,left:d,top:R,duration:U})=>B.jsx("div",{className:"heart",style:{left:d,top:R,animationDuration:U}},"heart-"+p))]}),c&&B.jsxs("div",{className:"volume-control",title:"Volume Control",children:[B.jsx("div",{className:"volume-label",children:"🔊"}),B.jsx("input",{type:"range",min:"0",max:"1",step:"0.01",value:T,onChange:p=>z(parseFloat(p.target.value)),className:"volume-slider",orient:"vertical"})]})]})}const Kd=[` ✨ Cutest moment, frozen in time with love!.
 
-(Drama Queen 👑)`,` 📸 This moment is pure gold and always close to my heart. 
-
- (Cutest Camera Girl💕)`," 😊 That smile still lights up everything around (Earrings 🫠)"," 🌟 A memory to cherish forever, just like you! (Saree 😍😍)"],Fu=[{src:"images/img1.jpg",alt:"Memory 1"},{src:"images/img2.jpg",alt:"Memory 2"},{src:"images/img3.jpg",alt:"Memory 3"},{src:"images/img4.jpg",alt:"Memory 4"}];function Jd(c,o){let s=0;o("");function r(){s<c.length&&(o(h=>h+c.charAt(s)),s++,setTimeout(r,50))}r()}const yy=()=>{const c=Nf(),[o,s]=M.useState(null),[r,h]=M.useState("");M.useEffect(()=>{const T=setInterval(()=>{const z=document.getElementById("fall-container");if(z)for(let p=0;p<3;p++){const d=document.createElement("div");d.className="fall-item",Math.random()>.5?(d.textContent="❤️",d.style.fontSize="22px"):(d.textContent="✨",d.style.fontSize="20px"),d.style.left=Math.random()*100+"vw",d.style.animationDuration=4+Math.random()*3+"s",z.appendChild(d),setTimeout(()=>{d.remove()},8e3)}},100);return()=>clearInterval(T)},[]);const y=()=>{const T=Math.floor(Math.random()*Fu.length);s(T),Jd(Kd[T],h)};return B.jsxs(B.Fragment,{children:[B.jsx("style",{children:`
+(Drama Queen 👑)`," 📸  The peace of the temple, the fun of a bike ride, and the colors of Holi – all together, this day became the ultimate adventure. (Holi time💕)"," 😊 That smile still lights up everything around (Earrings 🫠)"," 😉 The night out was also fun, but your talks on the tea date outweighed everything. (Chai date 😁😁)"," 🌟 A memory to cherish forever, just like you! (Saree 😍😍)"," 🤗 Drops of rain, the breeze of a bike ride, the taste of kachori, and then a photo with your smile.(Photo Time 😝)"],Fu=[{src:"images/img1.jpg",alt:"Memory 1"},{src:"images/photo2.jpg",alt:"Memory 5"},{src:"images/img3.jpg",alt:"Memory 3"},{src:"images/photo4.jpg",alt:"Memory 7"},{src:"images/img4.jpg",alt:"Memory 4"},{src:"images/photo3.jpg",alt:"Memory 6"}];function Jd(c,o){let s=0;o("");function r(){s<c.length&&(o(h=>h+c.charAt(s)),s++,setTimeout(r,50))}r()}const yy=()=>{const c=Nf(),[o,s]=M.useState(null),[r,h]=M.useState("");M.useEffect(()=>{const T=setInterval(()=>{const z=document.getElementById("fall-container");if(z)for(let p=0;p<3;p++){const d=document.createElement("div");d.className="fall-item",Math.random()>.5?(d.textContent="❤️",d.style.fontSize="22px"):(d.textContent="✨",d.style.fontSize="20px"),d.style.left=Math.random()*100+"vw",d.style.animationDuration=4+Math.random()*3+"s",z.appendChild(d),setTimeout(()=>{d.remove()},8e3)}},100);return()=>clearInterval(T)},[]);const y=()=>{const T=Math.floor(Math.random()*Fu.length);s(T),Jd(Kd[T],h)};return B.jsxs(B.Fragment,{children:[B.jsx("style",{children:`
         .nav-buttons {
           position: fixed;
           bottom: 20px;
@@ -286,12 +284,11 @@ Please change the parent <Route path="${Y}"> to <Route path="${Y==="/"?"*":`${Y}
           transition: transform 0.3s ease-in-out, filter 0.3s ease;
           cursor: pointer;
         }
-
         .photo-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* ye waise hi rehne do */
-}
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
         .photo-box:hover {
           transform: scale(1.05);
         }
@@ -318,28 +315,25 @@ Please change the parent <Route path="${Y}"> to <Route path="${Y==="/"?"*":`${Y}
           box-shadow: 0 6px 16px rgba(0,0,0,0.25);
           border: 4px solid #f472b6;
         }
-          .center-button {
-  display: flex;
-  justify-content: center;
-  margin: 30px 0;
-}
-
-.btn-slide {
-  background: linear-gradient(to right, #f472b6, #c084fc);
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 30px;
-  font-size: 1rem;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  transition: transform 0.2s;
-}
-
-.btn-slide:hover {
-  transform: scale(1.05);
-}
-
+        .center-button {
+          display: flex;
+          justify-content: center;
+          margin: 30px 0;
+        }
+        .btn-slide {
+          background: linear-gradient(to right, #f472b6, #c084fc);
+          color: white;
+          border: none;
+          padding: 12px 24px;
+          border-radius: 30px;
+          font-size: 1rem;
+          cursor: pointer;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+          transition: transform 0.2s;
+        }
+        .btn-slide:hover {
+          transform: scale(1.05);
+        }
         .highlighted-photo img {
           width: 100%;
           height: 100%;
@@ -378,7 +372,13 @@ Please change the parent <Route path="${Y}"> to <Route path="${Y==="/"?"*":`${Y}
           0% { transform: translateY(0) rotate(0); opacity: 1; }
           100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
-      `}),B.jsx("div",{id:"fall-container"}),B.jsx("h1",{children:"Lovely Photo Of You"}),B.jsx("p",{children:"“I’m just thinking 🤔 these cute photos need to be kept safe, otherwise, just like your smile, I’ll have to secretly keep admiring them!” 🌸💖"}),B.jsx("div",{className:"center-button",children:B.jsx("button",{className:"btn-slide",onClick:y,children:"🎲 Random Photo Picker"})}),B.jsx("div",{className:"photos",children:Fu.map((T,z)=>B.jsx("div",{className:`photo-box ${o!==null&&z!==o?"blurred":""}`,onClick:()=>{s(z),Jd(Kd[z],h)},children:B.jsx("img",{src:T.src,alt:T.alt})},z))}),o!==null&&B.jsxs("div",{className:"highlighted-section",children:[B.jsx("div",{className:"highlighted-photo",children:B.jsx("img",{src:Fu[o].src,alt:Fu[o].alt})}),B.jsx("div",{className:"message-card",children:r})]}),B.jsxs("div",{className:"nav-buttons",children:[B.jsx("button",{className:"nav-btn",onClick:()=>c(-1),children:"🔙 Previous"}),B.jsx("button",{className:"nav-btn",onClick:()=>c("/cake"),children:"Next 🔜"})]})]})},py=()=>{const c=Nf(),[o,s]=M.useState(5),[r,h]=M.useState(!1),[y,T]=M.useState(!1),[z,p]=M.useState(!1),[d,R]=M.useState(!1),[U,C]=M.useState(""),G=M.useRef(null),w=` 🎉 Happy Birthday, Kiran!
+        @media (max-width: 600px) {
+          .photos {
+            flex-direction: column;
+            align-items: center;
+          }
+        }
+      `}),B.jsx("div",{id:"fall-container"}),B.jsx("h1",{children:"Lovely Photo Of You"}),B.jsx("p",{children:"“I’m just thinking 🤔 these cute photos need to be kept safe, otherwise, just like your smile, I’ll have to secretly keep admiring them!” 🌸💖"}),B.jsx("div",{className:"center-button",children:B.jsx("button",{className:"btn-slide",onClick:y,children:"Click on this and see 😲"})}),B.jsx("div",{className:"photos",children:Fu.map((T,z)=>B.jsx("div",{className:`photo-box ${o!==null&&z!==o?"blurred":""}`,onClick:()=>{s(z),Jd(Kd[z],h)},children:B.jsx("img",{src:T.src,alt:T.alt})},z))}),o!==null&&B.jsxs("div",{className:"highlighted-section",children:[B.jsx("div",{className:"highlighted-photo",children:B.jsx("img",{src:Fu[o].src,alt:Fu[o].alt})}),B.jsx("div",{className:"message-card",children:r})]}),B.jsxs("div",{className:"nav-buttons",children:[B.jsx("button",{className:"nav-btn",onClick:()=>c(-1),children:"🔙 Previous"}),B.jsx("button",{className:"nav-btn",onClick:()=>c("/cake"),children:"Next 🔜"})]})]})},py=()=>{const c=Nf(),[o,s]=M.useState(5),[r,h]=M.useState(!1),[y,T]=M.useState(!1),[z,p]=M.useState(!1),[d,R]=M.useState(!1),[U,C]=M.useState(""),G=M.useRef(null),w=` 🎉 Happy Birthday, Kiran!
 Today is your day, so just chill, pamper yourself, and ignore the world a little.
 The way your smile freshens the mood, and today is also the reason to look double cute 😄
 May your life be full of surprises, happiness and a little fun every year.🎂🎈 
