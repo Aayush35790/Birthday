@@ -3,16 +3,21 @@ import { useNavigate } from "react-router-dom";
 
 const messages = [
   " ✨ Cutest moment, frozen in time with love!.\n\n(Drama Queen 👑)",
-  " 📸 This moment is pure gold and always close to my heart. \n\n (Cutest Camera Girl💕)",
+  " 📸  The peace of the temple, the fun of a bike ride, and the colors of Holi – all together, this day became the ultimate adventure. (Holi time💕)",
   " 😊 That smile still lights up everything around (Earrings 🫠)",
-  " 🌟 A memory to cherish forever, just like you! (Saree 😍😍)",
+  " 😉 The night out was also fun, but your talks on the tea date outweighed everything. (Chai date 😁😁)",
+    " 🌟 A memory to cherish forever, just like you! (Saree 😍😍)",
+  " 🤗 Drops of rain, the breeze of a bike ride, the taste of kachori, and then a photo with your smile.(Photo Time 😝)",
+
 ];
 
 const photos = [
   { src: "images/img1.jpg", alt: "Memory 1" },
-  { src: "images/img2.jpg", alt: "Memory 2" },
+  { src: "images/photo2.jpg", alt: "Memory 5" },
   { src: "images/img3.jpg", alt: "Memory 3" },
+  { src: "images/photo4.jpg", alt: "Memory 7" },
   { src: "images/img4.jpg", alt: "Memory 4" },
+  { src: "images/photo3.jpg", alt: "Memory 6" },
 ];
 
 function typeWriter(text, setText) {
@@ -33,7 +38,6 @@ const Memories = () => {
   const [highlightIndex, setHighlightIndex] = useState(null);
   const [typedMessage, setTypedMessage] = useState("");
 
-  // Falling hearts and sparkles effect
   useEffect(() => {
     const interval = setInterval(() => {
       const fallContainer = document.getElementById("fall-container");
@@ -127,12 +131,11 @@ const Memories = () => {
           transition: transform 0.3s ease-in-out, filter 0.3s ease;
           cursor: pointer;
         }
-
         .photo-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* ye waise hi rehne do */
-}
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
         .photo-box:hover {
           transform: scale(1.05);
         }
@@ -159,28 +162,25 @@ const Memories = () => {
           box-shadow: 0 6px 16px rgba(0,0,0,0.25);
           border: 4px solid #f472b6;
         }
-          .center-button {
-  display: flex;
-  justify-content: center;
-  margin: 30px 0;
-}
-
-.btn-slide {
-  background: linear-gradient(to right, #f472b6, #c084fc);
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 30px;
-  font-size: 1rem;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  transition: transform 0.2s;
-}
-
-.btn-slide:hover {
-  transform: scale(1.05);
-}
-
+        .center-button {
+          display: flex;
+          justify-content: center;
+          margin: 30px 0;
+        }
+        .btn-slide {
+          background: linear-gradient(to right, #f472b6, #c084fc);
+          color: white;
+          border: none;
+          padding: 12px 24px;
+          border-radius: 30px;
+          font-size: 1rem;
+          cursor: pointer;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+          transition: transform 0.2s;
+        }
+        .btn-slide:hover {
+          transform: scale(1.05);
+        }
         .highlighted-photo img {
           width: 100%;
           height: 100%;
@@ -219,6 +219,12 @@ const Memories = () => {
           0% { transform: translateY(0) rotate(0); opacity: 1; }
           100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
+        @media (max-width: 600px) {
+          .photos {
+            flex-direction: column;
+            align-items: center;
+          }
+        }
       `}</style>
 
       <div id="fall-container"></div>
@@ -231,7 +237,7 @@ const Memories = () => {
 
       <div className="center-button">
         <button className="btn-slide" onClick={showRandomPhoto}>
-          🎲 Random Photo Picker
+           Click on this and see 😲
         </button>
       </div>
 
